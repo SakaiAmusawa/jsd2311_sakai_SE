@@ -24,5 +24,8 @@ public class ToUpperCaseDemo {
         codeIn = codeIn.toLowerCase();
         equals = codeIn.equals(codeOut);
         System.out.println(equals);
+
+        equals = codeIn.equalsIgnoreCase(codeOut);//该方法提供了忽略大小写的比较方式
+        System.out.println(equals);
     }
 }
