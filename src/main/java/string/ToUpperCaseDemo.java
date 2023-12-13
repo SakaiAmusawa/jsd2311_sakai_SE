@@ -13,5 +13,16 @@ public class ToUpperCaseDemo {
 
         String upper = name.toUpperCase();
         System.out.println(upper);
+
+        String codeOut = "SDFSsdfsd";
+        String codeIn = "SdfsSdFsd";
+
+        boolean equals = codeIn.equals(codeOut);
+        System.out.println(equals);
+
+        codeOut = codeOut.toLowerCase();
+        codeIn = codeIn.toLowerCase();
+        equals = codeIn.equals(codeOut);
+        System.out.println(equals);
     }
 }
