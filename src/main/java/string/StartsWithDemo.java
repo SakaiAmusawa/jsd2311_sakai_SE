@@ -7,7 +7,7 @@ public class StartsWithDemo {
         boolean starts = url.startsWith("www.");//比较开头位置是否与给定字符串相符
         System.out.println(starts);
 
-        boolean end = url.endsWith(".cn");//比较结尾位置是否与给定字符串相符
-        System.out.println(end);
+        boolean ends = url.endsWith(".cn");//比较结尾位置是否与给定字符串相符
+        System.out.println(ends);
     }
 }
