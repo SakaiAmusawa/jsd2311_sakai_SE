@@ -1,4 +1,4 @@
-package homework.day01;
+package teacher.homework.day01;
 /**
  * 提高题
  * 生成一个4位验证码(数字和字母的组合)
