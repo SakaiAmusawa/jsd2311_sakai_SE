@@ -11,5 +11,10 @@ public class IntegerDemo2 {
         System.out.println(dMax);
         double dMin = Double.MIN_VALUE;
         System.out.println(dMin);
+
+        long lMax = Long.MAX_VALUE;
+        System.out.println(lMax);
+        long lMin = Long.MIN_VALUE;
+        System.out.println(lMin);
     }
 }
