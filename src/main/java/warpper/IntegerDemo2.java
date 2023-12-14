@@ -2,6 +2,7 @@ package warpper;
 
 public class IntegerDemo2 {
     public static void main(String[] args) {
+        //最大值与最小值的用法
         int iMax = Integer.MAX_VALUE;
         System.out.println(iMax);
         int iMin = Integer.MIN_VALUE;
@@ -16,5 +17,14 @@ public class IntegerDemo2 {
         System.out.println(lMax);
         long lMin = Long.MIN_VALUE;
         System.out.println(lMin);
+
+        //将字符串转换为基本数据类型的方法
+        String str = "3016";
+        int i = Integer.parseInt(str);
+        System.out.println(i);
+        double d = Double.parseDouble(str);
+        System.out.println(d);
+
+
     }
 }
