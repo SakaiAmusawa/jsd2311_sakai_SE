@@ -1,6 +1,5 @@
 package string;
 
-import com.sun.org.apache.xpath.internal.operations.Number;
 
 public class ReplaceDemo {
     public static void main(String[] args) {
