@@ -19,12 +19,20 @@ public class IntegerDemo2 {
         System.out.println(lMin);
 
         //将字符串转换为基本数据类型的方法
+        //条件：字符串必须描述了基本类型可保存的值
         String str = "3016";
+        String strDouble = "2.26";
         int i = Integer.parseInt(str);
         System.out.println(i);
         double d = Double.parseDouble(str);
         System.out.println(d);
 
+/*        int iTest = Integer.parseInt(strDouble);
+        System.out.println(iTest);
+        error:整形的数据类型无法储存小数
+        */
+        double dTest = Double.parseDouble(strDouble);
+        System.out.println(dTest);
 
     }
 }
