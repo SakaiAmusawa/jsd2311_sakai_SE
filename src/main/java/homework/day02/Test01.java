@@ -21,7 +21,7 @@ import java.util.Scanner;
  * @author sakai amusawa
  */
 public class Test01 {
-    public static Scanner scanner = new Scanner(System.in);
+    public static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         System.out.println("input your name");
