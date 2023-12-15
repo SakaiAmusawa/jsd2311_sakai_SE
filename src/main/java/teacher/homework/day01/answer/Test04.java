@@ -1,4 +1,4 @@
-package homework.day01;
+package homework.day01.answer;
 /**
  * 改正下面代码的逻辑错误
  * 
@@ -13,9 +13,10 @@ package homework.day01;
 public class Test04 {
 	public static void main(String[] args) {
 		String fileName = "123.png";
-		
-		boolean check = fileName.startsWith(".png");
-		
+		//startsWith是用来判断以指定的内容开始的
+//		boolean check = fileName.startsWith(".png");
+		boolean check = fileName.endsWith(".png");
+
 		if(check) {
 			System.out.println("是png图片!");
 		}else {

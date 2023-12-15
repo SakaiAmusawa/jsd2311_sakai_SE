@@ -1,6 +1,9 @@
-package homework.day01;
+package homework.day01.answer;
+
+import java.util.Random;
+import java.util.Scanner;
+
 /**
- * 提高题
  * 生成一个4位验证码(数字和字母的组合)
  * 然后输出到控制台并提示用户输入该验证码，只要用户输入正确(无论大小写都算)，
  * 就输出:验证码正确，否则输出:验证码错误
@@ -27,9 +30,33 @@ package homework.day01;
  */
 public class Test06 {
 	public static void main(String[] args) {
-		
+		//首先尝试独立思考，完成需求，没有思路可看最下面的提示
+		String code = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		Random random = new Random();
+		String line = "";
+		for(int i=0;i<4;i++) {
+			int index = random.nextInt(code.length());
+			char c = code.charAt(index);
+			line = line + c;
+		}
+		System.out.println(line);
+
+		System.out.println("请输入验证码:");
+		Scanner scanner = new Scanner(System.in);
+		String str = scanner.nextLine();
+
+//		str = str.toLowerCase();
+//		line = line.toLowerCase();
+//		if(str.equals(line)){
+
+		if(str.equalsIgnoreCase(line)){
+			System.out.println("验证码正确");
+		}else{
+			System.out.println("验证码错误");
+		}
 	}
 }
+
 
 /*
 		提示代码:

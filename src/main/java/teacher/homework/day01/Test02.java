@@ -1,4 +1,4 @@
-package teacher.homework.day01;
+package homework.day01;
 /**
  * 要求用户在控制台输入自己的用户名。
  * 然后要求做如下验证工作:
@@ -8,12 +8,5 @@ package teacher.homework.day01;
  *
  */
 public class Test02 {
-    public static void main(String[] args) {
-        String name = " ";
-        String test = name.trim();
-        System.out.println(test.length());
-        System.out.println(test);
-
-    }
 
 }

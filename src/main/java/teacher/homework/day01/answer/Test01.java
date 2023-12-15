@@ -1,4 +1,4 @@
-package homework.day01;
+package homework.day01.answer;
 /**
  * 实现方法,完成获取下列文件名中的后缀名
  * @author Xiloer
@@ -20,7 +20,7 @@ public class Test01 {
 	public static void main(String[] args) {
 		String fileName1 = "logo.png";//要png
 		String fileName2 = "jquery.1.1.2.js";//要js
-		
+
 		String ext = getExtByName(fileName1);
 		System.out.println(ext);//png
 		ext = getExtByName(fileName2);
@@ -30,9 +30,10 @@ public class Test01 {
 	 * 获取给定文件名中的后缀名部分
 	 * @param name	文件名
 	 * @return
-	 * 
+	 *
 	 */
 	public static String getExtByName(String name) {
-		return "";
+		int index = name.lastIndexOf(".")+1;
+		return name.substring(index);
 	}
 }
