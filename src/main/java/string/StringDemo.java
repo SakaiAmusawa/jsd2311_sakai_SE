@@ -10,7 +10,7 @@ public class StringDemo {
         String b = "123abc";//对象的重用
         System.out.println(a == b);
 
-        String c = new String("123abc");
+        String c = "123abc";
         System.out.println(a == c);//new 一定产生了一个新的对象
 
         String d = "123" + "abc";//对象重用，这涉及到了Java的预编译操作，该操作直接运算变量 即变量d在被虚拟机运行前已经变为了"123abc"，查看对应的.class文件即可发现。

@@ -57,6 +57,7 @@ java在堆内存中开辟了一段空间用于缓存所有使用字面量形式�
 
 ```java
 package string;
+
 /**
  *  字符串String
  *  内部使用一个char数组保存所有字符，每个字符为2字节，存的是该字符unicode编码。
@@ -73,13 +74,13 @@ public class StringDemo {
         String s1 = "123abc";//字面量
         String s2 = "123abc";//与s1字面量相同，重用对象
         //地址相同，说明s2重用了s1对象
-        System.out.println(s1==s2);//true
+        System.out.println(s1 == s2);//true
         String s3 = "123abc";
-        System.out.println(s1==s3);//true
+        System.out.println(s1 == s3);//true
 
-        String s4 = new String("123abc");//new会产生新对象
-        System.out.println("s4:"+s4);
-        System.out.println(s1==s4);//false
+        String s4 = "123abc";//new会产生新对象
+        System.out.println("s4:" + s4);
+        System.out.println(s1 == s4);//false
         /*
             通常我们判断字符串都是比较内容，因此应当使用字符串的equals方法
          */
@@ -88,9 +89,9 @@ public class StringDemo {
             由于字符串是不变对象，改变内容会产生新对象
          */
         s1 = s1 + "!";//生成一个新的字符串对象123abc!.
-        System.out.println("s1:"+s1);//123abc!
-        System.out.println("s2:"+s2);//123abc
-        System.out.println(s1==s2);//false s1,s2已经不再指向同一个对象了
+        System.out.println("s1:" + s1);//123abc!
+        System.out.println("s2:" + s2);//123abc
+        System.out.println(s1 == s2);//false s1,s2已经不再指向同一个对象了
 
         /*
             这里触发了一个编译器的特性:
@@ -101,23 +102,23 @@ public class StringDemo {
             也因此s5会重用常量池中的对象，所以地址与s2相同
          */
         String s5 = "123" + "abc";
-        System.out.println("s5:"+s5);
-        System.out.println(s2==s5);
+        System.out.println("s5:" + s5);
+        System.out.println(s2 == s5);
 
         String s = "123";
         String s6 = s + "abc";
-        System.out.println("s6:"+s6);
-        System.out.println(s2==s6);
+        System.out.println("s6:" + s6);
+        System.out.println(s2 == s6);
 
-        String s7 = 1+2+3+"abc";//6abc
-        System.out.println(s2==s7);//false
+        String s7 = 1 + 2 + 3 + "abc";//6abc
+        System.out.println(s2 == s7);//false
 
 
-        String s8 = 1+'2'+3+"abc";
-        System.out.println(s2==s8);//false
+        String s8 = 1 + '2' + 3 + "abc";
+        System.out.println(s2 == s8);//false
 
-        String s9 = 1+"2"+3+"abc";
-        System.out.println(s2==s9);//true
+        String s9 = 1 + "2" + 3 + "abc";
+        System.out.println(s2 == s9);//true
 
     }
 }
