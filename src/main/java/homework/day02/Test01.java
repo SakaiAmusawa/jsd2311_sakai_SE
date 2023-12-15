@@ -21,15 +21,15 @@ import java.util.Scanner;
  * @author sakai amusawa
  */
 public class Test01 {
+    public static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("input your name");
         String name = scanner.nextLine();
         checkUserName(name);
     }
 
     public static void checkUserName(String name) {
-        Scanner scanner = new Scanner(System.in);
         String regex = "[a-z0-9A-Z_]{3,15}";
         boolean match = name.matches(regex);
         while (true) {
@@ -48,7 +48,6 @@ public class Test01 {
     }
 
     public static void checkAge(String age) {
-        Scanner scanner = new Scanner(System.in);
         String regex = "[0-9]+";
 
         boolean match = age.matches(regex);
