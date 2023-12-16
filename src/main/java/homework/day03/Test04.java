@@ -21,12 +21,10 @@ public class Test04 {
             int elem = random.nextInt(101);
             list.add(elem);
         }
-        ;
         System.out.println(list);
 
         //截取集合的第三到第六个元素
-        List<Integer> list_copy = new ArrayList<>();
-        list_copy = list.subList(2, 6);
+        List<Integer> list_copy = list.subList(2, 6);
         System.out.println(list_copy);
 
         //反转
