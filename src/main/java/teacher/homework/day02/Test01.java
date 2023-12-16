@@ -1,4 +1,4 @@
-package homework.day02;
+package teacher.homework.day02;
 /**
  * 正则表达式练习:
  * 1:编写匹配数字的正则表达式,数字至少一位以上.

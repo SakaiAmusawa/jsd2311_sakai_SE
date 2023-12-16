@@ -1,4 +1,4 @@
-package homework.day02;
+package teacher.homework.day02;
 /**
  * 拆分字符串练习
  * 

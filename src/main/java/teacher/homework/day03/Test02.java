@@ -1,4 +1,4 @@
-package homework.day03;
+package teacher.homework.day03;
 
 /**
  * 改错题

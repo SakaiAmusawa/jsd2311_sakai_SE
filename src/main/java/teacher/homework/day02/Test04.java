@@ -1,4 +1,4 @@
-package homework.day02;
+package teacher.homework.day02;
 /**
  * 执行程序，分析并解决问题
  * 
