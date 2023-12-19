@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 public class ReadStringDemo {
     public static void main(String[] args) throws IOException {
         //创建一个file对象 用于给byte数组的长度赋值
-        File file = new File("note.txt");
+        File file = new File("./src/main/java/io/ReadStringDemo.java");
         //创建一个输入流用于读取数据
         FileInputStream fis = new FileInputStream(file);
 
