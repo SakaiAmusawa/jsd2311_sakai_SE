@@ -10,7 +10,4 @@ package io;
  * 问最终可以得到多少瓶汽水?
  */
 public class Test {
-    public static void main(String[] args) {
-
-    }
 }
