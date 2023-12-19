@@ -17,12 +17,14 @@ public class Test02 {
         没有读到结尾那就 继续读下一个字节，然后在写出来，如此往复循环
          */
         int d;
+        long start = System.currentTimeMillis();//记录开始时间
         while ((d = fis.read()) != -1) {
             fos.write(d);
         }
+        long end = System.currentTimeMillis();//记录结束时间
         //关闭流
         fis.close();
         fos.close();
-        System.out.println("复制完毕！");
+        System.out.println("复制完毕！耗时：" + (end - start) + "ms");
     }
 }
