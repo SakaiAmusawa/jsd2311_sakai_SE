@@ -8,7 +8,6 @@ public class Test02 {
     public static void main(String[] args) throws IOException {
         FileInputStream fis = new FileInputStream("./image.png");
         FileOutputStream fos = new FileOutputStream("./image_cp.png");
-
         /*
         下面步骤的个人理解
         图片是一个有许多的0和1组成的文件
@@ -21,6 +20,7 @@ public class Test02 {
         while ((d = fis.read()) != -1) {
             fos.write(d);
         }
+        //关闭流
         fis.close();
         fos.close();
         System.out.println("复制完毕！");
