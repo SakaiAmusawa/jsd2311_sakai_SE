@@ -9,12 +9,22 @@ public class CopyDemo2 {
         FileInputStream fis = new FileInputStream("./image.png");
         FileOutputStream fos = new FileOutputStream("./imageCopy.png");
 
-        int d;
         long start = System.currentTimeMillis();
+        /*
+        一块一块的写，称之为块写操作
+         */
+        /*
         byte[] bytes = new byte[1024 * 10];
-        while ((d = fis.read(bytes)) != -1) {
+        while (fis.read(bytes) != -1) {
             fos.write(bytes);
+        }*/
+
+        int len;
+        byte[] bytes = new byte[1024 * 10];
+        while ((len = fis.read(bytes)) != -1) {
+            fos.write(bytes, 0, len);
         }
+
         long end = System.currentTimeMillis();
         fis.close();
         fos.close();
