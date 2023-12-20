@@ -17,5 +17,6 @@ public class TestUserInfo {
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(userInfo);
         oos.close();
+
     }
 }
