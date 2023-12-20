@@ -14,7 +14,7 @@ import java.util.Scanner;
  * dir  是单词directory的缩写，目录的意思
  * list 列表
  *
- * @author Xiloer
+ * @author sakai amusawa
  */
 public class Test04 {
     public static void main(String[] args) {
