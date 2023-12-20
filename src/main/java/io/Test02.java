@@ -27,7 +27,8 @@ public class Test02 {
 
     public static void writeInNote(String message) throws IOException {
         Scanner scanner = new Scanner(System.in);
-        FileOutputStream fos = new FileOutputStream("note.txt");
+        //boolean型参数的作用是允许内容进行追加，即不在每次抹除之前的数据
+        FileOutputStream fos = new FileOutputStream("note.txt", true);
         //忽略大小写的比较
         while (!"exit".equalsIgnoreCase(message)) {
             byte[] bytes = message.getBytes(StandardCharsets.UTF_8);

@@ -10,7 +10,7 @@ public class Test03_Copy {
 
     public static void main(String[] args) throws IOException {
         File file = new File(PATHNAME);
-        File[] files = file.listFiles();
+        File[] files = file.listFiles(f -> f.getName().endsWith(".java"));
 
         for (int i = 0; i < files.length; i++) {
             FileInputStream fis = new FileInputStream(PATHNAME + files[i].getName());
