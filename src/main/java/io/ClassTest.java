@@ -13,9 +13,9 @@ public class ClassTest {
         PrintWriter pw = new PrintWriter(bw, true);
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("write somethings in note");
-        String line = scanner.nextLine();
         while (true) {
+            System.out.println("write somethings in note");
+            String line = scanner.nextLine();
             if ("exit".equalsIgnoreCase(line)) {
                 System.out.println("Ending......");
                 break;
@@ -23,8 +23,6 @@ public class ClassTest {
 
             //开启自动刷新后，每一次调用.println()后自动调用.flush()
             pw.println(line);
-            System.out.println("write somethings in note");
-            line = scanner.nextLine();
         }
         pw.close();
     }
