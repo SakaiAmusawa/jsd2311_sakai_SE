@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 
-
 /**
  * 使用当前类测试对象流的序列化与反序列化
  */
@@ -12,7 +11,11 @@ public class Person implements Serializable {
     private String name;
     private String sex;
     private int age;
-    private String[] info;
+    /*
+    简单的说明：加入transient关键字以后 该数据变为瞬时数据 即在对象流中不在保存
+    再次输出时发现值为null
+     */
+    private transient String[] info;
 
     public Person() {
 
