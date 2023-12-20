@@ -9,7 +9,8 @@ public class ClassTest {
         FileOutputStream fos = new FileOutputStream("note2.txt");
         OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);//字节转字符串
         BufferedWriter bw = new BufferedWriter(osw);//提供缓冲
-        PrintWriter pw = new PrintWriter(bw);
+        //开启自动flush功能
+        PrintWriter pw = new PrintWriter(bw, true);
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("write somethings in note");
@@ -20,6 +21,7 @@ public class ClassTest {
                 break;
             }
 
+            //开启自动刷新后，每一次调用.println()后自动调用.flush()
             pw.println(line);
             System.out.println("write somethings in note");
             line = scanner.nextLine();
