@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 /**
  * 将当前目录下的所有文件都复制一份，复制的文件命名为:原
@@ -12,7 +11,7 @@ import java.nio.charset.StandardCharsets;
  * 比如原文件为:test.dat
  * 复制后的文件为:test_cp.dat
  *
- * @author sakai amsuawa
+ * @author sakai amusawa
  */
 public class Test03 {
     public static void main(String[] args) throws IOException {
@@ -23,12 +22,14 @@ public class Test03 {
             FileInputStream fis = new FileInputStream(pathName + files[i].getName());
             int index = files[i].getName().indexOf(".");
             String fn = files[i].getName().substring(0, index);
-            String name = fn + "_cp.java";
+            String name = fn + "_cp.txt";
             FileOutputStream fos = new FileOutputStream(pathName + name);
 
+            int d;
             byte[] data = new byte[(int) files[i].length()];
-            String message = new String(data, StandardCharsets.UTF_8);
-            fos.write(message.getBytes(StandardCharsets.UTF_8));
+            while ((d = fis.read(data)) != -1) {
+                fos.write(data, 0, d);
+            }
             fos.close();
             fis.close();
         }
