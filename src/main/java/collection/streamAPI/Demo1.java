@@ -35,5 +35,6 @@ public class Demo1 {
 
         List<Integer> list5 = list.stream().map(e -> e * 3).filter(e -> e % 2 == 0).distinct().sorted((e1, e2) -> e2 - e1).collect(Collectors.toList());
         System.out.println(list5);
+
     }
 }
