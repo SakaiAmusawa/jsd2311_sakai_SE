@@ -17,7 +17,7 @@ public class FinallyDemo2 {
             e.printStackTrace();
         } finally {
             try {
-                if(fos!=null) {
+                if (fos != null) {
                     fos.close();
                 }
             } catch (IOException e) {
