@@ -1,6 +1,7 @@
 package socket;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.Socket;
 
 public class Client {
@@ -28,6 +29,10 @@ public class Client {
     客户端启动的方法
      */
     public void start() {
-
+        try (OutputStream os = socket.getOutputStream()){
+            os.write(1);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
