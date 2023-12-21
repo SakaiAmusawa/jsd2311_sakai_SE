@@ -8,6 +8,7 @@ import java.io.IOException;
  */
 public class FinallyDemo2 {
     public static void main(String[] args) {
+        //流程繁杂
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream("fos.dat");
