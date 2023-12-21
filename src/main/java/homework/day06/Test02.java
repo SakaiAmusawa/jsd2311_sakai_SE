@@ -15,15 +15,15 @@ import java.io.ObjectInputStream;
 public class Test02 {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         File file = new File(".");
-        File[] files = file.listFiles();
+        File[] files = file.listFiles(f -> f.getName().endsWith(".obj"));
         for (int i = 0; i < files.length; i++) {
-            if (files[i].getName().endsWith(".obj")) {
-                FileInputStream fis = new FileInputStream(files[i].getName());
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                User user = (User) ois.readObject();
-                System.out.println(user);
-                ois.close();
+            FileInputStream fis = new FileInputStream(files[i].getName());
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Object object = ois.readObject();
+            if (object instanceof User) {
+                System.out.println(object);
             }
+            ois.close();
         }
     }
 }
