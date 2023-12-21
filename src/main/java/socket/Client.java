@@ -29,10 +29,11 @@ public class Client {
     客户端启动的方法
      */
     public void start() {
-        try (OutputStream os = socket.getOutputStream()){
+        //在客户端进行数据的发送 使用OutputStream
+        try (OutputStream os = socket.getOutputStream()) {
             os.write(1);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }

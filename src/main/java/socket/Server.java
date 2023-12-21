@@ -28,8 +28,11 @@ public class Server {
             System.out.println("等待客户端连接...");
             Socket socket = serverSocket.accept();
             System.out.println("客户端连接完成");
+
+            //进行数据的接受
             InputStream is = socket.getInputStream();
             int d = is.read();
+            //输出接受的数据
             System.out.println(d);
         } catch (IOException e) {
             throw new RuntimeException(e);
