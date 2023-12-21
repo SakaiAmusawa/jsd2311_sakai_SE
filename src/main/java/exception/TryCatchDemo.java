@@ -18,7 +18,7 @@ public class TryCatchDemo {
             System.out.println("出现了下标越界异常，抛出了异常，输出了该句话");
         }*/ catch (StringIndexOutOfBoundsException | NullPointerException exception) {
             System.out.println("出现了空指针或下标越界异常");
-        }catch (Exception e ){
+        } catch (Exception e) {
             System.out.println("未知错误");
         }
         System.out.println("程序结束");
