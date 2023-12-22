@@ -1,4 +1,4 @@
-package sakai;
+package sakai.io;
 
 import java.io.File;
 import java.io.FileInputStream;
