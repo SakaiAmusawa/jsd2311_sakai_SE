@@ -50,6 +50,13 @@ public class Server {
             //System.out.println(message);
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                serverSocket.close();
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
         }
     }
 }

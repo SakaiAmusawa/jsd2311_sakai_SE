@@ -47,10 +47,15 @@ public class Client {
                 }
                 pw.println("客户端：" + message);
             }
-            socket.close();
         } catch (IOException e) {
             e.printStackTrace();
 
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
