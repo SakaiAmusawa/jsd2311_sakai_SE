@@ -17,6 +17,7 @@ public class Client {
             socket = new Socket("127.0.0.1", 8088);
             System.out.println("服务器连接成功");
         } catch (IOException e) {
+            System.out.println("警告：无法连接服务端");
             e.printStackTrace();
         }
     }
@@ -31,7 +32,8 @@ public class Client {
      */
     public void start() {
         //在客户端进行数据的发送 使用OutputStream
-        try (OutputStream os = socket.getOutputStream()) {
+        try {
+            OutputStream os = socket.getOutputStream();
             OutputStreamWriter osw = new OutputStreamWriter(os, StandardCharsets.UTF_8);
             BufferedWriter bw = new BufferedWriter(osw);
             PrintWriter pw = new PrintWriter(bw, true);
@@ -45,9 +47,10 @@ public class Client {
                 }
                 pw.println("客户端：" + message);
             }
-            pw.close();
+            socket.close();
         } catch (IOException e) {
             e.printStackTrace();
+
         }
     }
 }

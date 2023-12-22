@@ -9,7 +9,7 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
 public class Server {
-    ServerSocket serverSocket;
+    private ServerSocket serverSocket;
 
     public Server() {
         try {
@@ -17,7 +17,7 @@ public class Server {
             serverSocket = new ServerSocket(8088);
             System.out.println("服务端启动完毕");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -48,9 +48,8 @@ public class Server {
             }
             //String message = br.readLine();
             //System.out.println(message);
-            br.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }
