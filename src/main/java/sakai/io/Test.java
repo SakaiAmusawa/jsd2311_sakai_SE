@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * 将当前目录下的所有文件都复制一份，复制的文件命名为:原
@@ -19,7 +20,7 @@ public class Test {
         File file = new File(pathName);
         File[] files = file.listFiles();
 
-        for (int i = 0; i < files.length; i++) {
+        for (int i = 0; i < Objects.requireNonNull(files).length; i++) {
             //FileInputStream fis = new FileInputStream(files[i].getName());
             int index = files[i].getName().indexOf(".");
             String fileName = files[i].getName().substring(0, index);
