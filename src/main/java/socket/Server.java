@@ -1,9 +1,12 @@
 package socket;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 public class Server {
     ServerSocket serverSocket;
@@ -29,11 +32,23 @@ public class Server {
             Socket socket = serverSocket.accept();
             System.out.println("客户端连接完成");
 
-            //进行数据的接受
+/*            //进行数据的接受
             InputStream is = socket.getInputStream();
-            int d = is.read();
             //输出接受的数据
-            System.out.println(d);
+            int d = is.read();
+            System.out.println(d);*/
+
+            InputStream is = socket.getInputStream();
+            InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
+            BufferedReader br = new BufferedReader(isr);
+
+            String message;
+            while ((message = br.readLine()) != null) {
+                System.out.println(message);
+            }
+            //String message = br.readLine();
+            //System.out.println(message);
+            br.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -1,8 +1,9 @@
 package socket;
 
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 public class Client {
     private Socket socket;
@@ -16,7 +17,7 @@ public class Client {
             socket = new Socket("127.0.0.1", 8088);
             System.out.println("服务器连接成功");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -31,7 +32,20 @@ public class Client {
     public void start() {
         //在客户端进行数据的发送 使用OutputStream
         try (OutputStream os = socket.getOutputStream()) {
-            os.write(1);
+            OutputStreamWriter osw = new OutputStreamWriter(os, StandardCharsets.UTF_8);
+            BufferedWriter bw = new BufferedWriter(osw);
+            PrintWriter pw = new PrintWriter(bw, true);
+            //pw.println("你好服务端！");
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                System.out.println("输入想要发送的信息：");
+                String message = scanner.nextLine();
+                if ("exit".equals(message)) {
+                    break;
+                }
+                pw.println("客户端：" + message);
+            }
+            pw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
