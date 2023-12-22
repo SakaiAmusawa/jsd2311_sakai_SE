@@ -52,6 +52,7 @@ public class Client {
 
         } finally {
             try {
+                System.out.println("客户端退出");
                 //close方法内部会与服务端进行四次挥手
                 socket.close();//交互完毕后与服务端断开链接
             } catch (IOException e) {

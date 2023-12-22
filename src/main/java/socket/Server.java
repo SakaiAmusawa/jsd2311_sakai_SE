@@ -28,18 +28,52 @@ public class Server {
 
     public void start() {
         try {
-            Socket socket = null;
+
             while (true) {
                 System.out.println("等待客户端连接...");
-                socket = serverSocket.accept();
+                Socket socket = serverSocket.accept();
                 System.out.println("客户端连接完成");
-
+                ClientHandler clientHandler = new ClientHandler(socket);
+                Thread thread = new Thread(clientHandler);
+                thread.start();
 /*            //进行数据的接受
             InputStream is = socket.getInputStream();
             //输出接受的数据
             int d = is.read();
             System.out.println(d);*/
 
+            }
+            //String message = br.readLine();
+            //System.out.println(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                serverSocket.close();
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private static class ClientHandler implements Runnable {
+        /**
+         * 这使用了一种参数的传递方式：构造器传递参数
+         * 在本例中 定义一个了一个 Socket类型的变量 socket
+         * 创建了一个含参构造用于接受外部数据
+         * 通过this.socket 为 private final Socket socket提供了引用对象
+         * 在下面的run方法中就可以使用start中的socket了
+         */
+        private final Socket socket;
+
+        public ClientHandler(Socket socket) {
+            this.socket = socket;
+        }
+
+        @Override
+        public void run() {
+            try {
                 InputStream is = socket.getInputStream();
                 InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
                 BufferedReader br = new BufferedReader(isr);
@@ -55,18 +89,16 @@ public class Server {
                 while ((message = br.readLine()) != null) {
                     System.out.println(message);
                 }
-            }
-            //String message = br.readLine();
-            //System.out.println(message);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                serverSocket.close();
             } catch (IOException e) {
-
-                e.printStackTrace();
+                throw new RuntimeException(e);
+            } finally {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+
         }
     }
 }
