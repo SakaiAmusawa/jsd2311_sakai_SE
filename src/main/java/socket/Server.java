@@ -67,6 +67,7 @@ public class Server {
          */
         private final Socket socket;
         private final String host;
+        private String nickName;
 
         public ClientHandler(Socket socket) {
             this.socket = socket;
@@ -80,7 +81,7 @@ public class Server {
                 InputStream is = socket.getInputStream();
                 InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
                 BufferedReader br = new BufferedReader(isr);
-
+                nickName = br.readLine();
                 String message;
              /*
                 readLine方法用于读取来自客户端发送过来的一行字符串。
@@ -88,9 +89,8 @@ public class Server {
                 1:正常返回一行字符串，正常读取
                 2:返回null，说明客户端进行了四次挥手与服务端断开链接，不会再发送数据
                 3:抛出异常，客户端没有进行四次挥手而异常断开*/
-
                 while ((message = br.readLine()) != null) {
-                    System.out.println(host + ":" + message);
+                    System.out.println(nickName + "(" + host + ")" + ":" + message);
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);

@@ -39,6 +39,20 @@ public class Client {
             PrintWriter pw = new PrintWriter(bw, true);
             //pw.println("你好服务端！");
             Scanner scanner = new Scanner(System.in);
+
+            //输入一个昵称
+            while (true) {
+                System.out.println("请输入昵称");
+                String nickName = scanner.nextLine();
+                if (nickName.trim().isEmpty()) {
+                    System.out.println("cant not empty");
+                } else {
+                    pw.println(nickName);
+                    break;
+                }
+            }
+
+
             while (true) {
                 System.out.println("输入想要发送的信息：");
                 String message = scanner.nextLine();
