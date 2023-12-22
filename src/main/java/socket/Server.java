@@ -66,9 +66,12 @@ public class Server {
          * 在下面的run方法中就可以使用start中的socket了
          */
         private final Socket socket;
+        private final String host;
 
         public ClientHandler(Socket socket) {
             this.socket = socket;
+            //添加了IP地址信息
+            host = socket.getInetAddress().getHostAddress();
         }
 
         @Override
@@ -87,7 +90,7 @@ public class Server {
                 3:抛出异常，客户端没有进行四次挥手而异常断开*/
 
                 while ((message = br.readLine()) != null) {
-                    System.out.println(message);
+                    System.out.println(host + ":" + message);
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);

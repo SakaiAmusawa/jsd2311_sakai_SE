@@ -45,7 +45,7 @@ public class Client {
                 if ("exit".equals(message)) {
                     break;
                 }
-                pw.println("客户端：" + message);
+                pw.println(message);
             }
         } catch (IOException e) {
             e.printStackTrace();
