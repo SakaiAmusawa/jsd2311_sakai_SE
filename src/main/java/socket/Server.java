@@ -33,7 +33,7 @@ public class Server {
                 System.out.println("等待客户端连接...");
                 Socket socket = serverSocket.accept();
                 System.out.println("客户端连接完成");
-                ClientHandler clientHandler = new ClientHandler(socket);
+                Runnable clientHandler = new ClientHandler(socket);
                 Thread thread = new Thread(clientHandler);
                 thread.start();
 /*            //进行数据的接受
