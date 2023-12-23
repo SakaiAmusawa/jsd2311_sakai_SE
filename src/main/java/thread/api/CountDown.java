@@ -10,10 +10,21 @@ import java.util.Scanner;
 public class CountDown {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int time = scanner.nextInt();
+        System.out.println("输入一个数开始倒计时");
+/*        int time = scanner.nextInt();
 
         for (int i = 0; i < time; i++) {
             System.out.println(time - i);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }*/
+
+        //简化
+        for (int i = scanner.nextInt(); i > 0; i--) {
+            System.out.println(i);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
