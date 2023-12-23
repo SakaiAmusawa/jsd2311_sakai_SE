@@ -26,6 +26,11 @@ public class SyncDemo1 {
 
             t1.start();
             t2.start();
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             if (success1 && success2) {
                 System.out.println("出现问题了" + num);
                 break;
