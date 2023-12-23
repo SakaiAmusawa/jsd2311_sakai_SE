@@ -44,5 +44,12 @@ public class DaemonDemo {
         //设置mimi为守护线程(必须在其启动前设置为守护线程)，当aw线程结束时 mimi线程也结束
         mimi.setDaemon(true);
         mimi.start();
+
+        //卡死主线程
+        while (true) ;
+        /*
+        发现守护线程并没有结束，这说明守护线程并不是专门守护某个线程的 只有当所有用户线程都被杀死时
+        守护线程才会被杀死
+         */
     }
 }
