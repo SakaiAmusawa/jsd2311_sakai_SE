@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Server {
     //使用并发安全的集合
     //    private static List<PrintWriter> allOut = Collections.synchronizedList(new ArrayList<>());
-    private static Map<String, PrintWriter> allOut = new ConcurrentHashMap<>();
+    private Map<String, PrintWriter> allOut = new ConcurrentHashMap<>();
     //    private static List<PrintWriter> allOut = new ArrayList<>();
     private ServerSocket serverSocket;
 
@@ -60,7 +60,7 @@ public class Server {
         }
     }
 
-    private static class ClientHandler implements Runnable {
+    private class ClientHandler implements Runnable {
         /**
          * 这使用了一种参数的传递方式：构造器传递参数
          * 在本例中 定义一个了一个 Socket类型的变量 socket
@@ -104,18 +104,23 @@ public class Server {
                 3:抛出异常，客户端没有进行四次挥手而异常断开*/
                 while ((message = br.readLine()) != null) {
                     //将消息发送会给客户端
-                    sendMessage(nickName + "(" + host + ")" + ":" + message);
+                    if (message.startsWith("@")) {
+                        sendMessageToSomeOne(message);
+                    } else {
+                        sendMessage(nickName + "(" + host + ")" + ":" + message);
+                    }
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } finally {
-                try {
-                    //处理客户端断开连接后的操作
 
-                    //将客户端的输出流从集合allOut中移除
-                    //allOut.remove(pw);
-                    allOut.remove(nickName);
-                    sendMessage(nickName + "已退出,当前在线人数:" + allOut.size());
+                //处理客户端断开连接后的操作
+
+                //将客户端的输出流从集合allOut中移除
+                //allOut.remove(pw);
+                allOut.remove(nickName);
+                sendMessage(nickName + "已退出,当前在线人数:" + allOut.size());
+                try {
                     socket.close();
                 } catch (IOException e) {
                     System.out.println(" ");
@@ -138,6 +143,27 @@ public class Server {
                 }*/
                 //allOut.forEach(o -> o.println(message));
                 allOut.values().forEach(o -> o.println(message));
+            }
+        }
+
+        /**
+         * 将消息发送给指定用户
+         *
+         * @param message 私聊消息 格式为@nickName:聊天内容
+         */
+        public void sendMessageToSomeOne(String message) {
+            if (message.matches("@.+:.+")) {
+                int index = message.indexOf(":");
+                String toNickName = message.substring(1, index);
+                if (allOut.containsKey(toNickName)) {
+                    String toMessage = message.substring(index + 1);
+                    PrintWriter pw = allOut.get(toNickName);
+                    pw.println(nickName + "悄悄和你说:" + toMessage);
+                } else {
+                    allOut.get(nickName).println("用户不存在");
+                }
+            } else {
+                allOut.get(nickName).println("私聊格式不正确,正确的格式为:@nickName:聊天信息");
             }
         }
     }
