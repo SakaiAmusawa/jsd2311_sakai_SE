@@ -77,6 +77,7 @@ public class Server {
 
         @Override
         public void run() {
+            PrintWriter pw = null;
             try {
                 InputStream is = socket.getInputStream();
                 InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
@@ -87,7 +88,7 @@ public class Server {
                 OutputStream out = socket.getOutputStream();
                 OutputStreamWriter osw = new OutputStreamWriter(out, StandardCharsets.UTF_8);
                 BufferedWriter bw = new BufferedWriter(osw);
-                PrintWriter pw = new PrintWriter(bw, true);
+                pw = new PrintWriter(bw, true);
                 allOut.add(pw);
                 sendMessage(nickName + "(" + host + ")" + ":上线了 当前在线人数:" + allOut.size());
                 String message;
@@ -105,6 +106,11 @@ public class Server {
                 throw new RuntimeException(e);
             } finally {
                 try {
+                    //处理客户端断开连接后的操作
+
+                    //将客户端的输出流从集合allOut中移除
+                    allOut.remove(pw);
+                    sendMessage(nickName + "已退出,当前在线人数:" + allOut.size());
                     socket.close();
                 } catch (IOException e) {
                     e.printStackTrace();
