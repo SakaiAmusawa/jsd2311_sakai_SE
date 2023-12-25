@@ -89,6 +89,7 @@ public class Server {
                 BufferedWriter bw = new BufferedWriter(osw);
                 PrintWriter pw = new PrintWriter(bw, true);
                 allOut.add(pw);
+                sendMessage(nickName + "(" + host + ")" + ":上线了 当前在线人数:" + allOut.size());
                 String message;
              /*
                 readLine方法用于读取来自客户端发送过来的一行字符串。
