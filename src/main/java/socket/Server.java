@@ -4,8 +4,11 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Server {
+    private static List<PrintWriter> allOut = new ArrayList<>();
     private ServerSocket serverSocket;
 
     public Server() {
@@ -85,6 +88,7 @@ public class Server {
                 OutputStreamWriter osw = new OutputStreamWriter(out, StandardCharsets.UTF_8);
                 BufferedWriter bw = new BufferedWriter(osw);
                 PrintWriter pw = new PrintWriter(bw, true);
+                allOut.add(pw);
                 String message;
              /*
                 readLine方法用于读取来自客户端发送过来的一行字符串。
@@ -93,10 +97,8 @@ public class Server {
                 2:返回null，说明客户端进行了四次挥手与服务端断开链接，不会再发送数据
                 3:抛出异常，客户端没有进行四次挥手而异常断开*/
                 while ((message = br.readLine()) != null) {
-                    System.out.println(nickName + "(" + host + ")" + ":" + message);
-
                     //将消息发送会给客户端
-                    pw.println(nickName + "(" + host + ")" + ":" + message);
+                    sendMessage(nickName + "(" + host + ")" + ":" + message);
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -108,6 +110,19 @@ public class Server {
                 }
             }
 
+        }
+
+        /**
+         * 广播消息给客户端
+         */
+        public void sendMessage(String message) {
+            //先将消息发送到自己的控制台
+            System.out.println(nickName + "(" + host + ")" + ":" + message);
+            //将消息广播给所有的客户端
+            for (PrintWriter o : allOut
+            ) {
+                o.println(message);
+            }
         }
     }
 }
