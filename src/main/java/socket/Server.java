@@ -127,9 +127,9 @@ public class Server {
          * 广播消息给客户端
          */
         public void sendMessage(String message) {
+            //先将消息发送到自己的控制台
+            System.out.println(nickName + "(" + host + ")" + ":" + message);
             synchronized (allOut) {
-                //先将消息发送到自己的控制台
-                System.out.println(nickName + "(" + host + ")" + ":" + message);
                 //将消息广播给所有的客户端
                 for (PrintWriter o : allOut
                 ) {
