@@ -5,10 +5,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Server {
-    private static List<PrintWriter> allOut = new ArrayList<>();
+    //使用并发安全的集合
+    private static List<PrintWriter> allOut = Collections.synchronizedList(new ArrayList<>());
+    //    private static List<PrintWriter> allOut = new ArrayList<>();
     private ServerSocket serverSocket;
 
     public Server() {
@@ -89,9 +92,7 @@ public class Server {
                 OutputStreamWriter osw = new OutputStreamWriter(out, StandardCharsets.UTF_8);
                 BufferedWriter bw = new BufferedWriter(osw);
                 pw = new PrintWriter(bw, true);
-                synchronized (allOut) {
-                    allOut.add(pw);
-                }
+                allOut.add(pw);
                 sendMessage(nickName + "(" + host + ")" + ":上线了 当前在线人数:" + allOut.size());
                 String message;
              /*
@@ -111,9 +112,7 @@ public class Server {
                     //处理客户端断开连接后的操作
 
                     //将客户端的输出流从集合allOut中移除
-                    synchronized (allOut) {
-                        allOut.remove(pw);
-                    }
+                    allOut.remove(pw);
                     sendMessage(nickName + "已退出,当前在线人数:" + allOut.size());
                     socket.close();
                 } catch (IOException e) {
@@ -129,13 +128,11 @@ public class Server {
         public void sendMessage(String message) {
             //先将消息发送到自己的控制台
             System.out.println(nickName + "(" + host + ")" + ":" + message);
-            synchronized (allOut) {
                 //将消息广播给所有的客户端
                 for (PrintWriter o : allOut
                 ) {
                     o.println(message);
                 }
             }
-        }
     }
 }
