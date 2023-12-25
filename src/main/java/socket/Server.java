@@ -113,7 +113,7 @@ public class Server {
                     sendMessage(nickName + "已退出,当前在线人数:" + allOut.size());
                     socket.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println(" ");
                 }
             }
 
