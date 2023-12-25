@@ -1,9 +1,6 @@
 package socket;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
@@ -82,6 +79,12 @@ public class Server {
                 InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
                 BufferedReader br = new BufferedReader(isr);
                 nickName = br.readLine();
+
+                //将消息发给客户端
+                OutputStream out = socket.getOutputStream();
+                OutputStreamWriter osw = new OutputStreamWriter(out, StandardCharsets.UTF_8);
+                BufferedWriter bw = new BufferedWriter(osw);
+                PrintWriter pw = new PrintWriter(bw, true);
                 String message;
              /*
                 readLine方法用于读取来自客户端发送过来的一行字符串。
@@ -91,6 +94,9 @@ public class Server {
                 3:抛出异常，客户端没有进行四次挥手而异常断开*/
                 while ((message = br.readLine()) != null) {
                     System.out.println(nickName + "(" + host + ")" + ":" + message);
+
+                    //将消息发送会给客户端
+                    pw.println(nickName + "(" + host + ")" + ":" + message);
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);

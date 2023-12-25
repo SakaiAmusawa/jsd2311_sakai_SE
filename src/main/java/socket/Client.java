@@ -38,6 +38,12 @@ public class Client {
             BufferedWriter bw = new BufferedWriter(osw);
             PrintWriter pw = new PrintWriter(bw, true);
             //pw.println("你好服务端！");
+
+            //接受服务端发回的消息
+            InputStream in = socket.getInputStream();
+            InputStreamReader isr = new InputStreamReader(in, StandardCharsets.UTF_8);
+            BufferedReader br = new BufferedReader(isr);
+
             Scanner scanner = new Scanner(System.in);
 
             //输入一个昵称
@@ -60,6 +66,10 @@ public class Client {
                     break;
                 }
                 pw.println(message);
+
+                //读取服务端发送回来的一行字符串
+                message = br.readLine();
+                System.out.println(message);
             }
         } catch (IOException e) {
             e.printStackTrace();
