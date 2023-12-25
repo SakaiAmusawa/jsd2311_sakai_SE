@@ -89,7 +89,9 @@ public class Server {
                 OutputStreamWriter osw = new OutputStreamWriter(out, StandardCharsets.UTF_8);
                 BufferedWriter bw = new BufferedWriter(osw);
                 pw = new PrintWriter(bw, true);
-                allOut.add(pw);
+                synchronized (allOut) {
+                    allOut.add(pw);
+                }
                 sendMessage(nickName + "(" + host + ")" + ":上线了 当前在线人数:" + allOut.size());
                 String message;
              /*
@@ -109,7 +111,9 @@ public class Server {
                     //处理客户端断开连接后的操作
 
                     //将客户端的输出流从集合allOut中移除
-                    allOut.remove(pw);
+                    synchronized (allOut) {
+                        allOut.remove(pw);
+                    }
                     sendMessage(nickName + "已退出,当前在线人数:" + allOut.size());
                     socket.close();
                 } catch (IOException e) {
@@ -123,12 +127,14 @@ public class Server {
          * 广播消息给客户端
          */
         public void sendMessage(String message) {
-            //先将消息发送到自己的控制台
-            System.out.println(nickName + "(" + host + ")" + ":" + message);
-            //将消息广播给所有的客户端
-            for (PrintWriter o : allOut
-            ) {
-                o.println(message);
+            synchronized (allOut) {
+                //先将消息发送到自己的控制台
+                System.out.println(nickName + "(" + host + ")" + ":" + message);
+                //将消息广播给所有的客户端
+                for (PrintWriter o : allOut
+                ) {
+                    o.println(message);
+                }
             }
         }
     }
