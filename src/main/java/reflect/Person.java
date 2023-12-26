@@ -42,10 +42,38 @@ public class Person {
     }
 
     public void sayHello() {
-        System.out.println("Hello");
+        System.out.println(name + ":hello!");
     }
 
-    public void Bye(String name) {
-        System.out.println("Bye~ " + name);
+    public void sayHi() {
+        System.out.println(name + ":hi!");
+    }
+
+    public void doSome() {
+        System.out.println(name + ":做某事");
+    }
+
+    public void sleep() {
+        System.out.println(name + ":在睡觉");
+    }
+
+    public void watchTV() {
+        System.out.println(name + ":在看电视");
+    }
+
+    public void study() {
+        System.out.println(name + ":在学习");
+    }
+
+    public void playGame() {
+        System.out.println(name + ":在玩游戏");
+    }
+
+    public void sing() {
+        System.out.println(name + ":在唱歌");
+    }
+
+    private void heHe() {
+        System.out.println("person的私有方法");
     }
 }
