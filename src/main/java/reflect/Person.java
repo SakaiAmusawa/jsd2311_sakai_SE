@@ -73,6 +73,16 @@ public class Person {
         System.out.println(name + ":在唱歌");
     }
 
+    public void say(String info) {
+        System.out.println(name + ":" + info);
+    }
+
+    public void say(String info, int count) {
+        for (int i = 0; i < count; i++) {
+            System.out.println(name + ":" + info);
+        }
+    }
+
     private void heHe() {
         System.out.println("person的私有方法");
     }
