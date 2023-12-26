@@ -1,8 +1,8 @@
 package reflect;
 
 public class Person {
-    private String name ;
-    private int age ;
+    private String name = "zjw";
+    private int age = 25;
 
     public Person() {
 
@@ -39,5 +39,13 @@ public class Person {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public void sayHello() {
+        System.out.println("Hello");
+    }
+
+    public void Bye(String name) {
+        System.out.println("Bye~ " + name);
     }
 }
