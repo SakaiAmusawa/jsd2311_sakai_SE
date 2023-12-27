@@ -1,6 +1,7 @@
 package reflect;
 
 import reflect.annotations.AutoRunClass;
+import reflect.annotations.AutoRunMethod;
 
 @AutoRunClass
 public class Student {
@@ -39,6 +40,15 @@ public class Student {
 
     public void setGender(char gender) {
         this.gender = gender;
+    }
+
+    @AutoRunMethod
+    public void study() {
+        System.out.println(name + "good good study,day day up");
+    }
+
+    public void playGame() {
+        System.out.println( name + "正在玩游戏");
     }
 
     @Override

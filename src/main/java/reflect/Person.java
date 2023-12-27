@@ -1,6 +1,7 @@
 package reflect;
 
 import reflect.annotations.AutoRunClass;
+import reflect.annotations.AutoRunMethod;
 
 @AutoRunClass
 public class Person {
@@ -41,10 +42,12 @@ public class Person {
         this.age = age;
     }
 
+    @AutoRunMethod
     public void sayHello() {
         System.out.println(name + ":hello!");
     }
 
+    @AutoRunMethod
     public void sayHi() {
         System.out.println(name + ":hi!");
     }
@@ -57,6 +60,7 @@ public class Person {
         System.out.println(name + ":在睡觉");
     }
 
+    @AutoRunMethod
     public void watchTV() {
         System.out.println(name + ":在看电视");
     }
@@ -65,6 +69,7 @@ public class Person {
         System.out.println(name + ":在学习");
     }
 
+    @AutoRunMethod
     public void playGame() {
         System.out.println(name + ":在玩游戏");
     }
