@@ -13,9 +13,7 @@ public class Test7 {
         String packName = c.getPackage().getName();
         System.out.println(packName);
 
-        File dir = new File(
-                Test7.class.getResource(".").toURI()
-        );
+        File dir = new File(Test7.class.getResource(".").toURI());
         System.out.println(dir);
 
         File[] files = dir.listFiles(f -> f.getName().endsWith(".class"));
@@ -24,10 +22,12 @@ public class Test7 {
             String className = files[i].getName().substring(0, files[i].getName().indexOf("."));
             //System.out.println(className);
             Class cls = Class.forName(packName + "." + className);
+            System.out.println("实例化对象:" + className);
             Object o = cls.getDeclaredConstructor().newInstance();
             Method[] methods = cls.getDeclaredMethods();
             for (int j = 0; j < methods.length; j++) {
                 if (methods[j].getParameterCount() == 0 && methods[j].getModifiers() == Modifier.PUBLIC && methods[j].getName().contains("s")) {
+                    System.out.println("调用方法:" + methods[j].getName());
                     methods[j].invoke(o);
                 }
             }
