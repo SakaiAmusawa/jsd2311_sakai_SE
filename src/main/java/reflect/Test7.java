@@ -24,7 +24,7 @@ public class Test7 {
             String className = files[i].getName().substring(0, files[i].getName().indexOf("."));
             //System.out.println(className);
             Class cls = Class.forName(packName + "." + className);
-            Object o = cls.newInstance();
+            Object o = cls.getDeclaredConstructor().newInstance();
             Method[] methods = cls.getDeclaredMethods();
             for (int j = 0; j < methods.length; j++) {
                 if (methods[j].getParameterCount() == 0 && methods[j].getModifiers() == Modifier.PUBLIC && methods[j].getName().contains("s")) {
