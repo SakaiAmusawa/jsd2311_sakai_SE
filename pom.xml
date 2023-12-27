@@ -17,5 +17,12 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
     </properties>
-
+    <dependencies>
+        <!-- 其他依赖 -->
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.0.7</version> <!-- 替换为你需要的版本号 -->
+        </dependency>
+    </dependencies>
 </project>
