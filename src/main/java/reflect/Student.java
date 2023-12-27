@@ -1,5 +1,8 @@
 package reflect;
 
+import reflect.annotations.AutoRunClass;
+
+@AutoRunClass
 public class Student {
     private String name = "张三";
     private int age = 18;

@@ -1,5 +1,8 @@
 package reflect;
 
+import reflect.annotations.AutoRunClass;
+
+@AutoRunClass
 public class Teacher {
     public String name;
 
