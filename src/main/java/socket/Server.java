@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Server {
     //使用并发安全的集合
@@ -17,10 +19,13 @@ public class Server {
     //    private static List<PrintWriter> allOut = new ArrayList<>();
     private ServerSocket serverSocket;
 
+    private ExecutorService threadPool;
+
     public Server() {
         try {
             System.out.println("正在启动服务端");
             serverSocket = new ServerSocket(8088);
+            threadPool = Executors.newFixedThreadPool(50);
             System.out.println("服务端启动完毕");
         } catch (IOException e) {
             e.printStackTrace();
@@ -40,8 +45,10 @@ public class Server {
                 Socket socket = serverSocket.accept();
                 System.out.println("客户端连接完成");
                 Runnable clientHandler = new ClientHandler(socket);
-                Thread thread = new Thread(clientHandler);
-                thread.start();
+//                Thread thread = new Thread(clientHandler);
+//                thread.start();
+                //使用线程池的方法
+                threadPool.execute(clientHandler);
 /*            //进行数据的接受
             InputStream is = socket.getInputStream();
             //输出接受的数据
