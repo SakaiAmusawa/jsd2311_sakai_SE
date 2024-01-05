@@ -20,9 +20,9 @@
     <dependencies>
         <!-- 其他依赖 -->
         <dependency>
-            <groupId>org.mariadb.jdbc</groupId>
-            <artifactId>mariadb-java-client</artifactId>
-            <version>3.0.7</version> <!-- 替换为你需要的版本号 -->
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.28</version>
         </dependency>
     </dependencies>
 </project>

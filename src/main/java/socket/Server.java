@@ -4,6 +4,9 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -106,8 +109,11 @@ public class Server {
                     //将消息发送会给客户端
                     if (message.startsWith("@")) {
                         sendMessageToSomeOne(message);
+
                     } else {
                         sendMessage(nickName + "(" + host + ")" + ":" + message);
+                        //将消息保存到数据库
+                        saveMessage(nickName, null, message);
                     }
                 }
             } catch (IOException e) {
@@ -159,11 +165,32 @@ public class Server {
                     String toMessage = message.substring(index + 1);
                     PrintWriter pw = allOut.get(toNickName);
                     pw.println(nickName + "悄悄和你说:" + toMessage);
+                    //将聊天消息保存到数据库
+                    saveMessage(nickName, toNickName, message);
                 } else {
                     allOut.get(nickName).println("用户不存在");
                 }
             } else {
                 allOut.get(nickName).println("私聊格式不正确,正确的格式为:@nickName:聊天信息");
+            }
+        }
+
+        /**
+         * @param forUser 消息发送方
+         * @param toUser  消息接收方
+         * @param content 消息内容
+         */
+        public void saveMessage(String forUser, String toUser, String content) {
+            try (Connection connection = DBUtil.getConnection()) {
+                String sql = "INSERT INTO chatinfo(from_user,to_user,content) VALUES (?,?,?)";
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setString(1, forUser);
+                ps.setString(2, toUser);
+                ps.setString(3, content);
+                ps.executeUpdate();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         }
     }
